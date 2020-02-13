@@ -43,10 +43,10 @@ class MessageController implements IControllerBase {
 
     fake = async (req: Request, res: Response) => {
         try {
-            const faker = require('faker');
+            const faker: any = require('faker');
             const count = req.params.count;
-            let messagesArray = [];
-            for (var i=0; i < parseInt(count); i++){
+            let messagesArray: any = [];
+            for (var i = 0; i < parseInt(count); i++) {
                 messagesArray.push({
                     title: faker.name.findName(),
                     message: faker.lorem.sentence()
@@ -57,10 +57,10 @@ class MessageController implements IControllerBase {
                 ...messagesArray
             ]);
 
-                // await MessageControllerHelper.saveMessage({
-                //     title: faker.name.findName(),
-                //     message: faker.lorem.sentence()
-                // });
+            // await MessageControllerHelper.saveMessage({
+            //     title: faker.name.findName(),
+            //     message: faker.lorem.sentence()
+            // });
 
 
             res.status(200).send({
