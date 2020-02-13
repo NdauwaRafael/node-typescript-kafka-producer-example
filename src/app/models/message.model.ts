@@ -3,8 +3,8 @@ import {db} from "../helpers/database";
 
 class Message extends Model {
     public id!: number;
-    public name!: string;
-    public preferredName!: string | null;
+    public title!: string;
+    public message!: string | null;
 
     // timestamps!
     public readonly createdAt!: Date;
