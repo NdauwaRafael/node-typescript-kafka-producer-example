@@ -1,7 +1,7 @@
 import IControllerBase from "../interfaces/IControllerBase.interface";
 import express, {Request, Response} from "express";
 import MessageControllerHelper from "./resource/message.controller.helper";
-import faker from 'faker';
+import Message from "../../models/message.model";
 
 class MessageController implements IControllerBase {
     public path = '/';
@@ -14,11 +14,21 @@ class MessageController implements IControllerBase {
     public initRoutes() {
         this.router.get('/messages', this.index);
         this.router.post('/messages', this.post);
-        this.router.post('/messages/fake', this.fake);
+        this.router.post('/messages/fake/:count', this.fake);
     }
 
-    index = (req: Request, res: Response) => {
-
+    index = async (req: Request, res: Response) => {
+        try {
+            let messages = await Message.findAll();
+            res.status(200).send({
+                message: "Success",
+                messages
+            })
+        } catch (e) {
+            res.status(422).send({
+                message: 'failed'
+            })
+        }
     };
 
     post = async (req: Request, res: Response) => {
@@ -32,11 +42,37 @@ class MessageController implements IControllerBase {
     };
 
     fake = async (req: Request, res: Response) => {
-        const {count} = req.body;
-        for(var counter:number = 1; counter < parseInt(count); counter++){
-            await MessageControllerHelper.saveMessage({
-                title: faker.name.findName(),
-                message: faker.lorem.paragraph()
+        try {
+            const faker = require('faker');
+            const count = req.params.count;
+            let messagesArray = [];
+            for (var i=0; i < parseInt(count); i++){
+                messagesArray.push({
+                    title: faker.name.findName(),
+                    message: faker.lorem.sentence()
+                })
+            }
+
+            let messages = await Message.bulkCreate([
+                ...messagesArray
+            ]);
+
+                // await MessageControllerHelper.saveMessage({
+                //     title: faker.name.findName(),
+                //     message: faker.lorem.sentence()
+                // });
+
+
+            res.status(200).send({
+                message: "Success",
+                messages,
+                count
+            })
+
+        } catch (e) {
+            res.status(422).send({
+                message: 'failed',
+                error: e
             })
         }
     };

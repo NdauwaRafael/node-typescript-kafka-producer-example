@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import dotenv from "dotenv";
 import {controllers} from "./app/controllers";
 import loggerMiddleware from './middleware/logger';
+import express from 'express';
 
 // initialize configuration
 dotenv.config();
@@ -12,8 +13,9 @@ const app = new App({
     port: port,
     controllers: controllers,
     middleWares: [
-        bodyParser.json(),
-        bodyParser.urlencoded({ extended: true }),
+        express.json(),
+        bodyParser.urlencoded({ extended: false }),
+        express.urlencoded({extended: false}),
         loggerMiddleware
     ]
 });
