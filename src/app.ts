@@ -1,6 +1,7 @@
 import express from 'express'
 import { Application } from 'express'
 import {db} from "./app/helpers/database";
+import {scheduleMessagesProducer} from "./app/helpers/kafka/kafka.messages.schedules";
 
 class App {
     public app: Application;
@@ -51,6 +52,7 @@ class App {
 
     public subscribeKafka(){
         // kafkaSubscribe();
+        scheduleMessagesProducer();
     }
 }
 
