@@ -57,12 +57,6 @@ class MessageController implements IControllerBase {
                 ...messagesArray
             ]);
 
-            // await MessageControllerHelper.saveMessage({
-            //     title: faker.name.findName(),
-            //     message: faker.lorem.sentence()
-            // });
-
-
             res.status(200).send({
                 message: "Success",
                 messages,
