@@ -52,3 +52,5 @@ class App {
         // kafkaSubscribe();
     }
 }
+
+export default App;
