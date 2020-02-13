@@ -1,5 +1,6 @@
 import express from 'express'
 import { Application } from 'express'
+import {db} from "./app/helpers/database";
 
 class App {
     public app: Application;
@@ -45,7 +46,7 @@ class App {
     }
 
     public syncDb(){
-        // db.sync();
+        db.sync();
     }
 
     public subscribeKafka(){
