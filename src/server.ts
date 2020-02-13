@@ -2,6 +2,7 @@ import App from './app';
 import * as bodyParser from 'body-parser';
 import dotenv from "dotenv";
 import {controllers} from "./app/controllers";
+import loggerMiddleware from './middleware/logger';
 
 // initialize configuration
 dotenv.config();
@@ -13,7 +14,7 @@ const app = new App({
     middleWares: [
         bodyParser.json(),
         bodyParser.urlencoded({ extended: true }),
-        // loggerMiddleware
+        loggerMiddleware
     ]
 });
 
