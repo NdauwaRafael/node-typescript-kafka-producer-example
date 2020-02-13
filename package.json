@@ -1,0 +1,27 @@
+{
+  "name": "kafka-producer-app",
+  "version": "1.0.0",
+  "description": "A node typescript express kafka application producing messages to be consumed by the producer application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NdauwaRafael/node-typescript-kafka-producer-example.git"
+  },
+  "keywords": [
+    "node",
+    "kafka",
+    "express",
+    "typescript",
+    "producer",
+    "consumer"
+  ],
+  "author": "Raphael Karanja <raphaelndauwa@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NdauwaRafael/node-typescript-kafka-producer-example/issues"
+  },
+  "homepage": "https://github.com/NdauwaRafael/node-typescript-kafka-producer-example#readme"
+}
