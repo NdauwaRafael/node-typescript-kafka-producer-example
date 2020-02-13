@@ -79,6 +79,10 @@ class MessageController implements IControllerBase {
         }
     }
 
+    public async publishMessages(){
+
+    }
+
 }
 
 export default MessageController;
