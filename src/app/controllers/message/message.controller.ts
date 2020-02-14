@@ -2,6 +2,7 @@ import IControllerBase from "../interfaces/IControllerBase.interface";
 import express, {Request, Response} from "express";
 import MessageControllerHelper from "./resource/message.controller.helper";
 import Message from "../../models/message.model";
+import {publish} from "../../helpers/kafka/kafka.producer.helper";
 
 class MessageController implements IControllerBase {
     public path = '/';
@@ -79,8 +80,15 @@ class MessageController implements IControllerBase {
         }
     }
 
-    public async publishMessages(){
-
+    static async publishMessages(){
+        try {
+            let messages = await Message.findAll();
+            let parsed_message = messages.map((msg:any) => msg.toJSON());
+            publish('messages', parsed_message);
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
 
 }

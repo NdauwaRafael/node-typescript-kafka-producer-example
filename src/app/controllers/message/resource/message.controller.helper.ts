@@ -13,4 +13,8 @@ export default class MessageControllerHelper {
         })
     }
 
+    static loadAll(){
+        return Message.findAll();
+    }
+
 }
