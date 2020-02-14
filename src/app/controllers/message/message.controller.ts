@@ -80,11 +80,12 @@ class MessageController implements IControllerBase {
         }
     }
 
-    static async publishMessages(){
+    public async publishMessages(){
         try {
             let messages = await Message.findAll();
             let parsed_message = messages.map((msg:any) => msg.toJSON());
-            publish('messages', parsed_message);
+            let message_string = JSON.stringify(parsed_message);
+            publish('messages', message_string );
         }
         catch (e) {
             console.log(e);
